@@ -5,11 +5,14 @@ import VueRouter from 'vue-router'
 import routes from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import { createPinia,PiniaVuePlugin } from 'pinia'
 
+const pinia = createPinia();
 Vue.config.productionTip = false
-Vue.use(VueRouter).use(ElementUI);
+Vue.use(VueRouter).use(ElementUI).use(pinia).use(PiniaVuePlugin);
 let router = null;
 let instance = null;
+
 
 function render(props = {}) {
   const { container } = props;
@@ -21,8 +24,9 @@ function render(props = {}) {
 
   instance = new Vue({
     router,
-    // store,
+    pinia,
     render: (h) => h(App),
+    superProps: props,
   }).$mount(container ? container.querySelector('#app') : '#app');
 }
 
@@ -36,6 +40,7 @@ export async function bootstrap() {
 }
 export async function mount(props) {
   console.log('[vue] props from main framework', props);
+
   render(props);
 }
 export async function unmount() {

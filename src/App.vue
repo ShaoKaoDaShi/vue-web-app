@@ -15,16 +15,40 @@
     <div>
       <router-view></router-view>
     </div>
+    <h1>globalSecondsPassed: {{ this.ok()}}</h1>
   </div>
 </template>
 
 <script>
+import { mapStores } from "pinia";
 import HelloWorld from "./components/HelloWorld.vue";
+import useTimerStore from "./store/timer";
 
 export default {
   name: "App",
+  data: () => ({
+    time: 0,
+  }),
   components: {
     HelloWorld,
+  },
+  computed: {
+    ...mapStores(useTimerStore),
+  },
+  methods: {
+    ok() {
+      return useTimerStore().count
+    },
+  },
+  mounted() {
+    console.log(
+      "🚀 ~ file: App.vue:24 ~ useTimer:",
+      this.$parent.$options?.superProps
+    );
+    this.ok();
+    // this.useTimerStore.setTime(this.$parent.$options?.superProps.timer.secondsPassed)
+    console.log(useTimerStore().setTime(this.$parent?.$options?.superProps?.timer?.secondsPassed || 0))
+    // this.$u
   },
 };
 </script>
