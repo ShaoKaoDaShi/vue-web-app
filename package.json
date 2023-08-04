@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "element-ui": "^2.15.13",
     "qiankun": "^2.10.11",
     "vue": "^2.6.14",
     "vue-router": "^2.8.1"
@@ -38,7 +39,9 @@
     "parserOptions": {
       "parser": "@babel/eslint-parser"
     },
-    "rules": {}
+    "rules": {
+      "vue/component-name-in-template-casing": "off"
+    }
   },
   "browserslist": [
     "> 1%",

@@ -1,21 +1,26 @@
 import './public-path'
 import Vue from 'vue'
 import App from './App.vue'
+import VueRouter from 'vue-router'
+import routes from './router'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.config.productionTip = false
-
-// let router = null;
+Vue.use(VueRouter).use(ElementUI);
+let router = null;
 let instance = null;
+
 function render(props = {}) {
   const { container } = props;
-  // router = new VueRouter({
-  //   base: window.__POWERED_BY_QIANKUN__ ? '/vue/' : '/',
-  //   mode: 'history',
-  //   routes,
-  // });
+  router = new VueRouter({
+    base: window.__POWERED_BY_QIANKUN__ ? '/vue/' : '/',
+    mode: 'history',
+    routes,
+  });
 
   instance = new Vue({
-    // router,
+    router,
     // store,
     render: (h) => h(App),
   }).$mount(container ? container.querySelector('#app') : '#app');
@@ -37,5 +42,5 @@ export async function unmount() {
   instance.$destroy();
   instance.$el.innerHTML = '';
   instance = null;
-  // router = null;
+  router = null;
 }
