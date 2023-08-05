@@ -15,7 +15,7 @@
     <div>
       <router-view></router-view>
     </div>
-    <h1>globalSecondsPassed: {{ this.ok()}}</h1>
+    <h1>globalSecondsPassed: {{this.timerStore.count}}</h1>
   </div>
 </template>
 
@@ -33,22 +33,16 @@ export default {
     HelloWorld,
   },
   computed: {
+  // 用id + store 组成的字符串来访问store
     ...mapStores(useTimerStore),
-  },
-  methods: {
-    ok() {
-      return useTimerStore().count
-    },
   },
   mounted() {
     console.log(
       "🚀 ~ file: App.vue:24 ~ useTimer:",
       this.$parent.$options?.superProps
     );
-    this.ok();
     // this.useTimerStore.setTime(this.$parent.$options?.superProps.timer.secondsPassed)
-    console.log(useTimerStore().setTime(this.$parent?.$options?.superProps?.timer?.secondsPassed || 0))
-    // this.$u
+    console.log(this.timerStore.setTime(this.$parent?.$options?.superProps?.timer?.secondsPassed || 0))
   },
 };
 </script>

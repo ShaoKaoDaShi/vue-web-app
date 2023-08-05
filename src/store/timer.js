@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-const timer = defineStore("counter", {
+const timer = defineStore("timer", {
   state: () => ({ count: 0 }),
   getters: {
     double: (state) => state.count * 2,
