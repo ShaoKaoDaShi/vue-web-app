@@ -1,23 +1,22 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import BarPage from '../views/BarPage.vue';
+import routes from './route'
+import VueRouter from "vue-router";
+import Nprogress from '@/components/Nprogress';
+const router = new VueRouter({
+  base: window.__POWERED_BY_QIANKUN__ ? "/vue/" : "/",
+  mode: "history",
+  routes,
+});
 
-Vue.use(VueRouter);
+router.beforeEach((to, from , next) => {
+  Nprogress.start();
+  next()
+});
 
-const routes = [
-  {
-    path: '/bar',
-    name: 'bar',
-    component: BarPage,
-  },
-  {
-    path: '/foo',
-    name: 'foo',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/FooPage.vue'),
-  },
-];
+router.afterEach(() => {
+  Nprogress.done();
+});
+router.onError(() => {
+  Nprogress.done();
+});
 
-export default routes;
+export default router;
