@@ -42,7 +42,7 @@ export default {
       this.$parent.$options?.superProps
     );
     // this.useTimerStore.setTime(this.$parent.$options?.superProps.timer.secondsPassed)
-    console.log(this.timerStore.setTime(this.$parent?.$options?.superProps?.timer?.secondsPassed || 0))
+    // console.log(this.timerStore.setTime(this.$parent?.$options?.superProps?.timer?.secondsPassed || 0))
   },
 };
 </script>
