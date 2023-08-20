@@ -9,7 +9,7 @@ const timer = defineStore("timer", {
     increment() {
       this.count++;
     },
-    setTime(time) {
+    setTime(time=0) {
       this.count = time;
     },
   },
