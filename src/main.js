@@ -12,6 +12,9 @@ Vue.config.productionTip = false;
 Vue.use(VueRouter).use(ElementUI).use(pinia).use(PiniaVuePlugin);
 let instance = null;
 
+//模拟登录
+document.cookie="access_token=hahaha; username=admin"
+
 function render(props = {}) {
   const { container } = props;
 

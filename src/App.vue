@@ -3,6 +3,7 @@
     <div>
       <img alt="Vue logo" src="./assets/logo.png" />
     </div>
+    <!-- <el-button @click="replay">replay</el-button> -->
     <router-link to="/foo"
       ><el-button type="primary">Go to Foo</el-button></router-link
     >
@@ -23,7 +24,7 @@
 import { mapStores } from "pinia";
 import HelloWorld from "./components/HelloWorld.vue";
 import useTimerStore from "./store/timer";
-
+// import replay from './rrwebRepaly'
 export default {
   name: "App",
   data: () => ({
@@ -35,6 +36,8 @@ export default {
   computed: {
   // 用id + store 组成的字符串来访问store
     ...mapStores(useTimerStore),
+  },
+  methods:{
   },
   mounted() {
     console.log(

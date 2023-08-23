@@ -1,20 +1,24 @@
-// import axios from "axios";
-// axios.get('/api/users', function (req, res){
-//   console.log(req)
-//   console.log(res)
+import axios from "axios";
+const request = axios.create();
+// 添加请求拦截器
+request.interceptors.request.use(
+  function (config) {
+    config.headers.Authorization = "hahaha";
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
 
-// })
-// axios.post('/api/users', function (req, res){
-//   console.log(req)
-//   console.log(res)
+// 添加响应拦截器
+request.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
 
-// })
-
-// fetch("api/users",{method:"get"}).then((res) => {
-//   console.log("🚀 ~ file: index.js:4 ~ fetch ~ first:", res);
-// });
-
-
-// fetch("api/users",{method:"post",body:{text:'ok'}}).then((res) => {
-//   console.log("🚀 ~ file: index.js:4 ~ fetch ~ first:", res);
-// });
+export default request;
